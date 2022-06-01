@@ -180,10 +180,12 @@ class ConsoleApplication(object):
                 options.args.pop(0)
             target = expand_target(target)
             if target[0] == 'file':
-                argv = target[1]
+                argv = target[1][0].split(' ')
                 argv.extend(options.args)
                 options.args = []
-            self._target = target
+            target = list(target)
+            target[1] = target[1][0].split(' ')
+            self._target = tuple(target)
         else:
             self._target = None
 
